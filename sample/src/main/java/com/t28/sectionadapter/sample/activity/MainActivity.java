@@ -1,9 +1,11 @@
-package com.t28.sectionadapter.sample;
+package com.t28.sectionadapter.sample.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.t28.sectionadapter.sample.R;
 
 
 public class MainActivity extends ActionBarActivity {
