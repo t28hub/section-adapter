@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Section<T>> mSections;
     private final RecyclerView.AdapterDataObserver mObserver;
 
