@@ -49,6 +49,11 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
             throw new IllegalArgumentException("Section is not found:" + position);
         }
 
+        if (section.isHeaderPosition(position)) {
+            final int sectionPosition = mSections.indexOf(section);
+            return getHeaderId(sectionPosition, section.getHeader());
+        }
+
         final int itemPosition = section.toItemPosition(position);
         final RecyclerView.Adapter adapter = section.getAdapter();
         return adapter.getItemId(itemPosition);
@@ -120,6 +125,7 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
     }
 
     protected abstract int getHeaderViewType(int sectionPosition, T header);
+    protected abstract long getHeaderId(int sectionPosition, T header);
 
     private Section<T> findSectionByPositions(int position) {
         for (Section<T> section : mSections) {
