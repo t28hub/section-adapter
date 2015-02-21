@@ -10,6 +10,7 @@ import com.t28.sectionadapter.SectionAdapter;
 import com.t28.sectionadapter.sample.R;
 
 public class SimpleSectionAdapter extends SectionAdapter<String, SimpleSectionAdapter.HeaderViewHolder> {
+    private static final int VIEW_TYPE_HEADER = 1;
 
     @Override
     protected HeaderViewHolder onCreateHeaderHolder(ViewGroup parent, int viewType) {
@@ -25,7 +26,7 @@ public class SimpleSectionAdapter extends SectionAdapter<String, SimpleSectionAd
 
     @Override
     protected int getHeaderViewType(int sectionPosition, String header) {
-        return 0;
+        return VIEW_TYPE_HEADER;
     }
 
     @Override

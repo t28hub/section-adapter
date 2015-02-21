@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+    private static final int VIEW_TYPE_ITEM = 2;
+
     private final List<String> mItems;
 
     public ItemAdapter() {
@@ -32,6 +34,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         final String value = mItems.get(position);
         holder.bind(value);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return VIEW_TYPE_ITEM;
     }
 
     @Override
