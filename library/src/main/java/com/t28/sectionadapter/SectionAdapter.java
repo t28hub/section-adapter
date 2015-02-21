@@ -45,6 +45,8 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         adapter.registerAdapterDataObserver(mObserver);
         mSections.add(new Section<>(header, adapter));
+
+        refreshSections();
     }
 
     public void remove(T header) {
@@ -60,6 +62,8 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
         final RecyclerView.Adapter adapter = section.getAdapter();
         adapter.unregisterAdapterDataObserver(mObserver);
         mSections.remove(section);
+
+        refreshSections();
     }
 
     private Section<T> findSectionByHeader(T header) {
@@ -71,31 +75,46 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
         return Section.emptySection();
     }
 
+    private void refreshSections() {
+        Section<T> previous = Section.emptySection();
+        for (Section<T> section : mSections) {
+            final int position;
+            if (previous.isEmpty()) {
+                position = 0;
+            } else {
+                position = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
+            }
+            section.setHeaderPosition(position);
+            previous = section;
+        }
+        notifyDataSetChanged();
+    }
+
     private RecyclerView.AdapterDataObserver createObserver() {
         return new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
-                super.onChanged();
+                refreshSections();
             }
 
             @Override
             public void onItemRangeChanged(int positionStart, int itemCount) {
-                super.onItemRangeChanged(positionStart, itemCount);
+                refreshSections();
             }
 
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
+                refreshSections();
             }
 
             @Override
             public void onItemRangeRemoved(int positionStart, int itemCount) {
-                super.onItemRangeRemoved(positionStart, itemCount);
+                refreshSections();
             }
 
             @Override
             public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                refreshSections();
             }
         };
     }
