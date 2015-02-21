@@ -26,6 +26,19 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
+    public int getItemViewType(int position) {
+        final Section<T> section = findSectionByPositions(position);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("Section is not found:" + position);
+        }
+
+        if (section.isHeaderPosition(position)) {
+
+            return 0;
+        }
+    }
+
+    @Override
     public int getItemCount() {
         int itemCount = 0;
         for (Section section : mSections) {
@@ -84,6 +97,18 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
     private Section<T> findSectionByHeader(T header) {
         for (Section<T> section : mSections) {
             if (section.getHeader().equals(header)) {
+                return section;
+            }
+        }
+        return Section.emptySection();
+    }
+
+    private Section<T> findSectionByPositions(int position) {
+        for (Section<T> section : mSections) {
+            if (section.isHeaderPosition(position)) {
+                return section;
+            }
+            if (section.containsItem(position)) {
                 return section;
             }
         }

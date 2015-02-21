@@ -23,6 +23,16 @@ class Section<T> {
         return mHeader == null && mAdapter == null;
     }
 
+    public boolean isHeaderPosition(int position) {
+        return mHeaderPosition == position;
+    }
+
+    public boolean containsItem(int position) {
+        final int positionStart = mHeaderPosition + 1;
+        final int positionEnd = mHeaderPosition + mAdapter.getItemCount();
+        return positionStart <= position && position <= positionEnd;
+    }
+
     public T getHeader() {
         return mHeader;
     }
