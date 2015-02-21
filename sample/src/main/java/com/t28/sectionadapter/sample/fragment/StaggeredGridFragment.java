@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.t28.sectionadapter.sample.FragmentAdapter;
+import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.R;
 
 public class StaggeredGridFragment extends Fragment {

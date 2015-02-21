@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.common.view.SlidingTabLayout;
-import com.t28.sectionadapter.sample.FragmentAdapter;
+import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.R;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.t28.sectionadapter.sample;
+package com.t28.sectionadapter.sample.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
