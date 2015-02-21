@@ -33,8 +33,8 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         }
 
         if (section.isHeaderPosition(position)) {
-
-            return 0;
+            final int sectionPosition = mSections.indexOf(section);
+            return getHeaderViewType(sectionPosition, section.getHeader());
         }
 
         final int itemPosition = section.toItemPosition(position);
@@ -106,6 +106,8 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         }
         return Section.emptySection();
     }
+
+    protected abstract int getHeaderViewType(int sectionPosition, T header);
 
     private Section<T> findSectionByPositions(int position) {
         for (Section<T> section : mSections) {
