@@ -100,6 +100,10 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
         return itemCount;
     }
 
+    public void append(T header) {
+
+    }
+
     public void append(T header, RecyclerView.Adapter adapter) {
         if (header == null) {
             throw new NullPointerException("header == null");
