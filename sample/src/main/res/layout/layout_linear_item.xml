@@ -5,9 +5,9 @@
           android:layout_height="48dp"
           android:background="#ddffffff"
           android:gravity="center_vertical"
-          android:padding="16dp"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
           android:textColor="#dd000000"
-          android:textSize="16sp"
-          android:textStyle="bold"
+          android:textSize="14sp"
           tools:text="Item"
     />
