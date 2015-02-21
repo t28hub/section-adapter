@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.common.view.SlidingTabLayout;
 import com.t28.sectionadapter.sample.FragmentAdapter;
 import com.t28.sectionadapter.sample.R;
 
@@ -25,9 +26,16 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        setupView(view);
+        return view;
+    }
+
+    private void setupView(View view) {
         final ViewPager pager = (ViewPager) view.findViewById(R.id.main_pager);
         pager.setAdapter(createPagerAdapter());
-        return view;
+
+        final SlidingTabLayout tab = (SlidingTabLayout) view.findViewById(R.id.main_tab);
+        tab.setViewPager(pager);
     }
 
     private PagerAdapter createPagerAdapter() {
