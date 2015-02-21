@@ -6,7 +6,8 @@ class Section<T> {
     private static final Section EMPTY = new Section();
 
     private final T mHeader;
-    private RecyclerView.Adapter mAdapter;
+    private final RecyclerView.Adapter mAdapter;
+    private int mHeaderPosition = RecyclerView.NO_POSITION;
 
     public Section(T header, RecyclerView.Adapter adapter) {
         mHeader = header;
@@ -28,6 +29,14 @@ class Section<T> {
 
     public RecyclerView.Adapter getAdapter() {
         return mAdapter;
+    }
+
+    public void setHeaderPosition(int position) {
+        mHeaderPosition = position;
+    }
+
+    public int getHeaderPosition() {
+        return mHeaderPosition;
     }
 
     @SuppressWarnings("unchecked")
