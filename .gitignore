@@ -17,7 +17,12 @@ target/
 build/
 
 # Gradle files
+<<<<<<< HEAD
 .gradle
+=======
+.gradle/
+build/
+>>>>>>> cfeb4782790ff1d0a891f3cd2b4a30e2bcdd0ffc
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -29,7 +34,8 @@ proguard/
 *.log
 
 # Android Studio Files
-.idea/
+.idea
+*.iml
 
 # Mac Files 
 .DS_Store
