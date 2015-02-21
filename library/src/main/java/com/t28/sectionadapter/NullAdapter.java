@@ -3,8 +3,8 @@ package com.t28.sectionadapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-class NullAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
-    public NullAdapter() {
+public class NullAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+    NullAdapter() {
     }
 
     @Override
