@@ -10,4 +10,12 @@ class Section<T> {
         mHeader = header;
         mAdapter = adapter;
     }
+
+    public T getHeader() {
+        return mHeader;
+    }
+
+    public RecyclerView.Adapter getAdapter() {
+        return mAdapter;
+    }
 }
