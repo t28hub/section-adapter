@@ -43,6 +43,18 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
+    public long getItemId(int position) {
+        final Section<T> section = findSectionByPositions(position);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("Section is not found:" + position);
+        }
+
+        final int itemPosition = section.toItemPosition(position);
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        return adapter.getItemId(itemPosition);
+    }
+
+    @Override
     public int getItemCount() {
         int itemCount = 0;
         for (Section section : mSections) {
