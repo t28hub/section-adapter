@@ -115,6 +115,10 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         refreshSections();
     }
 
+    protected abstract int getHeaderViewType(int sectionPosition, T header);
+
+    protected abstract long getHeaderId(int sectionPosition, T header);
+
     private Section<T> findSectionByHeader(T header) {
         for (Section<T> section : mSections) {
             if (section.getHeader().equals(header)) {
@@ -123,9 +127,6 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         }
         return Section.emptySection();
     }
-
-    protected abstract int getHeaderViewType(int sectionPosition, T header);
-    protected abstract long getHeaderId(int sectionPosition, T header);
 
     private Section<T> findSectionByPositions(int position) {
         for (Section<T> section : mSections) {
