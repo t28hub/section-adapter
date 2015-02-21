@@ -4,19 +4,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Section<T>> mSections;
     private final RecyclerView.AdapterDataObserver mObserver;
+    private final Set<Integer> mHeaderViewTypes;
 
     public SectionAdapter() {
         mSections = new ArrayList<>();
         mObserver = createObserver();
+        mHeaderViewTypes = new HashSet<>();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mHeaderViewTypes.contains(viewType)) {
+            return onCreateHeaderHolder(parent, viewType);
+        }
+
         return null;
     }
 
@@ -34,7 +42,9 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
 
         if (section.isHeaderPosition(position)) {
             final int sectionPosition = mSections.indexOf(section);
-            return getHeaderViewType(sectionPosition, section.getHeader());
+            final int headerViewType = getHeaderViewType(sectionPosition, section.getHeader());
+            mHeaderViewTypes.add(headerViewType);
+            return headerViewType;
         }
 
         final int itemPosition = section.toItemPosition(position);
