@@ -1,30 +1,57 @@
 package com.t28.sectionadapter.sample.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.t28.sectionadapter.sample.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+    private final List<String> mItems;
+
+    public ItemAdapter() {
+        mItems = new ArrayList<>();
+        for (int index = 0; index < 50; index++) {
+            mItems.add("Item" + index);
+        }
+    }
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        final View itemView = inflater.inflate(R.layout.layout_main_item, parent, false);
+        return new ItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
+        final String value = mItems.get(position);
+        holder.bind(value);
+    }
 
+    @Override
+    public long getItemId(int position) {
+        return mItems.get(position).hashCode();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mItems.size();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+        }
+
+        public void bind(String value) {
+            ((TextView) itemView).setText(value);
         }
     }
 }
