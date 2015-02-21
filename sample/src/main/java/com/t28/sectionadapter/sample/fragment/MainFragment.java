@@ -35,6 +35,7 @@ public class MainFragment extends Fragment {
         pager.setAdapter(createPagerAdapter());
 
         final SlidingTabLayout tab = (SlidingTabLayout) view.findViewById(R.id.main_tab);
+        tab.setCustomTabView(R.layout.layout_main_tab, R.id.main_tab_text);
         tab.setViewPager(pager);
     }
 
