@@ -101,7 +101,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
     }
 
     public void append(T header) {
-
+        append(header, new NullAdapter());
     }
 
     public void append(T header, RecyclerView.Adapter adapter) {
