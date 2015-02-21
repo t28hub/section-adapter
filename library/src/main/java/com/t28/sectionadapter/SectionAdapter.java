@@ -8,9 +8,11 @@ import java.util.List;
 
 public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Section<T>> mSections;
+    private final RecyclerView.AdapterDataObserver mObserver;
 
     public SectionAdapter() {
         mSections = new ArrayList<>();
+        mObserver = createObserver();
     }
 
     @Override
@@ -41,6 +43,7 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
             throw new IllegalArgumentException("header already contains:" + header);
         }
 
+        adapter.registerAdapterDataObserver(mObserver);
         mSections.add(new Section<>(header, adapter));
     }
 
@@ -54,6 +57,8 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
             throw new IllegalArgumentException("header does not contain:" + header);
         }
 
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        adapter.unregisterAdapterDataObserver(mObserver);
         mSections.remove(section);
     }
 
@@ -64,5 +69,34 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
         }
         return Section.emptySection();
+    }
+
+    private RecyclerView.AdapterDataObserver createObserver() {
+        return new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+            }
+        };
     }
 }
