@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Section<T>> mSections;
     private final RecyclerView.AdapterDataObserver mObserver;
 
@@ -114,6 +114,8 @@ public abstract class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         mSections.clear();
         refreshSections();
     }
+
+    protected abstract VH onCreateHeaderHolder(ViewGroup parent, int viewType);
 
     protected abstract int getHeaderViewType(int sectionPosition, T header);
 
