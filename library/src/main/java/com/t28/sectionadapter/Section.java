@@ -49,6 +49,10 @@ class Section<T> {
         return mHeaderPosition;
     }
 
+    public int toItemPosition(int position) {
+        return position - mHeaderPosition - 1;
+    }
+
     @SuppressWarnings("unchecked")
     public static <T> Section<T> emptySection() {
         return EMPTY;

@@ -36,6 +36,10 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             return 0;
         }
+
+        final int itemPosition = section.toItemPosition(position);
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        return adapter.getItemViewType(itemPosition);
     }
 
     @Override
