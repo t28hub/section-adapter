@@ -19,6 +19,16 @@ public class StaggeredGridFragment extends Fragment {
     }
 
     public static class Creator implements FragmentAdapter.FragmentCreator {
+        private final CharSequence mTitle;
+
+        public Creator(CharSequence title) {
+            mTitle = title;
+        }
+
+        @Override
+        public CharSequence getTitle() {
+            return mTitle;
+        }
 
         @Override
         public Fragment create() {

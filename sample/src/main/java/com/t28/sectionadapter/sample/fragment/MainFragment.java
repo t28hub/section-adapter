@@ -32,9 +32,9 @@ public class MainFragment extends Fragment {
 
     private PagerAdapter createPagerAdapter() {
         final List<FragmentAdapter.FragmentCreator> creators = new ArrayList<>();
-        creators.add(new LinearFragment.Creator());
-        creators.add(new GridFragment.Creator());
-        creators.add(new StaggeredGridFragment.Creator());
+        creators.add(new LinearFragment.Creator("LinearFragment"));
+        creators.add(new GridFragment.Creator("GridFragment"));
+        creators.add(new StaggeredGridFragment.Creator("StaggeredGridFragment"));
         return new FragmentAdapter(getChildFragmentManager(), creators);
     }
 }

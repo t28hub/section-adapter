@@ -31,7 +31,15 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         return mCreators.size();
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        final FragmentCreator creator = mCreators.get(position);
+        return creator.getTitle();
+    }
+
     public interface FragmentCreator {
+        CharSequence getTitle();
+
         Fragment create();
     }
 }
