@@ -9,7 +9,7 @@ class Section<T> {
     private final RecyclerView.Adapter mAdapter;
     private int mHeaderPosition = RecyclerView.NO_POSITION;
 
-    public Section(T header, RecyclerView.Adapter adapter) {
+    Section(T header, RecyclerView.Adapter adapter) {
         mHeader = header;
         mAdapter = adapter;
     }
@@ -19,42 +19,42 @@ class Section<T> {
         mAdapter = null;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return mHeader == null && mAdapter == null;
     }
 
-    public boolean isHeaderPosition(int position) {
+    boolean isHeaderPosition(int position) {
         return mHeaderPosition == position;
     }
 
-    public boolean containsItem(int position) {
+    boolean containsItem(int position) {
         final int positionStart = mHeaderPosition + 1;
         final int positionEnd = mHeaderPosition + mAdapter.getItemCount();
         return positionStart <= position && position <= positionEnd;
     }
 
-    public T getHeader() {
+    T getHeader() {
         return mHeader;
     }
 
-    public RecyclerView.Adapter getAdapter() {
+    RecyclerView.Adapter getAdapter() {
         return mAdapter;
     }
 
-    public void setHeaderPosition(int position) {
+    void setHeaderPosition(int position) {
         mHeaderPosition = position;
     }
 
-    public int getHeaderPosition() {
+    int getHeaderPosition() {
         return mHeaderPosition;
     }
 
-    public int toItemPosition(int position) {
+    int toItemPosition(int position) {
         return position - mHeaderPosition - 1;
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Section<T> emptySection() {
+    static <T> Section<T> emptySection() {
         return EMPTY;
     }
 }
