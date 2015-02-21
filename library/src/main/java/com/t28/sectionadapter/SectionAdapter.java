@@ -27,7 +27,12 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return 0;
+        int itemCount = 0;
+        for (Section section : mSections) {
+            // ヘッダーとアイテム数
+            itemCount += 1 + section.getAdapter().getItemCount();
+        }
+        return itemCount;
     }
 
     public void add(T header, RecyclerView.Adapter adapter) {
