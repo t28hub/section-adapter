@@ -20,7 +20,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mHeaderViewTypes.contains(viewType)) {
             return onCreateHeaderHolder(parent, viewType);
         }
@@ -37,7 +37,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final Section<T> section = findSectionByPositions(position);
         if (section.isEmpty()) {
             return;
@@ -55,7 +55,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public final int getItemViewType(int position) {
         final Section<T> section = findSectionByPositions(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
@@ -74,7 +74,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
     }
 
     @Override
-    public long getItemId(int position) {
+    public final long getItemId(int position) {
         final Section<T> section = findSectionByPositions(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
@@ -91,7 +91,7 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
     }
 
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         int itemCount = 0;
         for (Section section : mSections) {
             // ヘッダーとアイテム数
