@@ -27,4 +27,9 @@ public class MainFragment extends Fragment {
         listView.setLayoutManager(new GridLayoutManager(getActivity(), SPAN_COUNT));
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }
