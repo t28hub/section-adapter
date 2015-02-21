@@ -15,7 +15,7 @@ public class SimpleSectionAdapter extends SectionAdapter<String, SimpleSectionAd
     @Override
     protected HeaderViewHolder onCreateHeaderHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View headerView = inflater.inflate(R.layout.layout_main_header, parent, false);
+        final View headerView = inflater.inflate(R.layout.layout_linear_header, parent, false);
         return new HeaderViewHolder(headerView);
     }
 
