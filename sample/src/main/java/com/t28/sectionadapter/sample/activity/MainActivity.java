@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import com.t28.sectionadapter.sample.R;
 import com.t28.sectionadapter.sample.fragment.MainFragment;
 
-
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -17,12 +16,11 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(android.R.id.content, MainFragment.newInstance())
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_container, MainFragment.newInstance())
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

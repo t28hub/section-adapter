@@ -24,9 +24,10 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ViewPager pager = (ViewPager) inflater.inflate(R.layout.fragment_main, container, false);
+        final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        final ViewPager pager = (ViewPager) view.findViewById(R.id.main_pager);
         pager.setAdapter(createPagerAdapter());
-        return pager;
+        return view;
     }
 
     private PagerAdapter createPagerAdapter() {
