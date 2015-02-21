@@ -38,10 +38,23 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         final Section<T> section = findSectionByHeader(header);
         if (!section.isEmpty()) {
-            throw new IllegalArgumentException("header already exists:" + header);
+            throw new IllegalArgumentException("header already contains:" + header);
         }
 
         mSections.add(new Section<>(header, adapter));
+    }
+
+    public void remove(T header) {
+        if (header == null) {
+            throw new NullPointerException("header == null");
+        }
+
+        final Section<T> section = findSectionByHeader(header);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("header does not contain:" + header);
+        }
+
+        mSections.remove(section);
     }
 
     private Section<T> findSectionByHeader(T header) {
