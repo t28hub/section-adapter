@@ -44,8 +44,8 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         adapter.registerAdapterDataObserver(mObserver);
-        mSections.add(new Section<>(header, adapter));
 
+        mSections.add(new Section<>(header, adapter));
         refreshSections();
     }
 
@@ -61,8 +61,18 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         final RecyclerView.Adapter adapter = section.getAdapter();
         adapter.unregisterAdapterDataObserver(mObserver);
-        mSections.remove(section);
 
+        mSections.remove(section);
+        refreshSections();
+    }
+
+    public void clear() {
+        for (Section<T> section : mSections) {
+            final RecyclerView.Adapter adapter = section.getAdapter();
+            adapter.unregisterAdapterDataObserver(mObserver);
+        }
+
+        mSections.clear();
         refreshSections();
     }
 
