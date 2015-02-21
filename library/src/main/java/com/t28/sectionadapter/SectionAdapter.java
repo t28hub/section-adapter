@@ -36,6 +36,20 @@ public class SectionAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHol
             throw new NullPointerException("adapter == null");
         }
 
+        final Section<T> section = findSectionByHeader(header);
+        if (!section.isEmpty()) {
+            throw new IllegalArgumentException("header already exists:" + header);
+        }
+
         mSections.add(new Section<>(header, adapter));
+    }
+
+    private Section<T> findSectionByHeader(T header) {
+        for (Section<T> section : mSections) {
+            if (section.getHeader().equals(header)) {
+                return section;
+            }
+        }
+        return Section.emptySection();
     }
 }
