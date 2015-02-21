@@ -25,7 +25,14 @@ public abstract class SectionAdapter<T, VH extends RecyclerView.ViewHolder> exte
             return onCreateHeaderHolder(parent, viewType);
         }
 
-        return null;
+        for (Section<T> section : mSections) {
+            final RecyclerView.Adapter adapter = section.getAdapter();
+            final RecyclerView.ViewHolder holder = adapter.onCreateViewHolder(parent, viewType);
+            if (holder != null) {
+                return holder;
+            }
+        }
+        throw new IllegalStateException("ViewHolder is not created. View type:" + viewType);
     }
 
     @Override
