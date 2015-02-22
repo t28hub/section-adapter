@@ -16,11 +16,15 @@ class Section2 {
     }
 
     private Section2() {
-        mAdapter = null;
+        mAdapter = new NullAdapter();
     }
 
     boolean isEmpty() {
-        return mAdapter == null;
+        return mAdapter instanceof NullAdapter;
+    }
+
+    RecyclerView.Adapter getAdapter() {
+        return mAdapter;
     }
 
     boolean isHeaderPosition(int position) {
