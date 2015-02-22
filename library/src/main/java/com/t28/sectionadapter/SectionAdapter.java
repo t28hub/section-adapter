@@ -104,6 +104,11 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
         return itemCount;
     }
 
+    public boolean isHeaderPosition(int position) {
+        final Section section = findSectionByPosition(position);
+        return section.isHeaderPosition(position);
+    }
+
     public void notifySectionChanged() {
         refreshSections();
         notifyDataSetChanged();
