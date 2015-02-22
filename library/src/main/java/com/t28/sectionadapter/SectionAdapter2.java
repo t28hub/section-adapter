@@ -15,8 +15,13 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public final int getItemCount() {
+        final int headerCount = getHeaderCount();
+        int itemCount = headerCount;
+        for (int position = 0; position < headerCount; position++) {
+            itemCount += getItemAdapter(position).getItemCount();
+        }
+        return itemCount;
     }
 
     protected abstract VH1 onCreateHaederViewHolder(ViewGroup parent, int viewType);
