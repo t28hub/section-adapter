@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.t28.sectionadapter.SectionAdapter;
+import com.t28.sectionadapter.Section;import com.t28.sectionadapter.SectionAdapter;
 import com.t28.sectionadapter.sample.R;
 
 import java.util.ArrayList;
@@ -25,6 +25,11 @@ public class SimpleSectionAdapter extends
         if (dataSet != null) {
             setup(dataSet);
         }
+    }
+
+    public boolean isHeaderPosition(int position) {
+        final Section section = findSectionByPosition(position);
+        return section.isHeaderPosition(position);
     }
 
     @Override
