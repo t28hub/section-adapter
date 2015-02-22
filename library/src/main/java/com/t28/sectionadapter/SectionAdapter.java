@@ -104,11 +104,6 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
         return itemCount;
     }
 
-    public boolean isHeaderPosition(int position) {
-        final Section section = findSectionByPosition(position);
-        return section.isHeaderPosition(position);
-    }
-
     public void notifySectionChanged() {
         refreshSections();
         notifyDataSetChanged();
@@ -126,11 +121,11 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
 
     protected abstract RecyclerView.Adapter<VH2> getItemAdapter(int sectionPosition);
 
-    private boolean isHeaderViewType(int viewType) {
+    protected boolean isHeaderViewType(int viewType) {
         return mHeaderViewTypes.contains(viewType);
     }
 
-    private Section findSectionByPosition(int position) {
+    protected Section findSectionByPosition(int position) {
         for (Section section : mSections) {
             if (section.isHeaderPosition(position)) {
                 return section;
