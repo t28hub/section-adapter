@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.t28.sectionadapter.SectionAdapter;
 import com.t28.sectionadapter.sample.R;
 
 public class SimpleSectionAdapter extends SectionAdapter<String, SimpleSectionAdapter.HeaderViewHolder> {
