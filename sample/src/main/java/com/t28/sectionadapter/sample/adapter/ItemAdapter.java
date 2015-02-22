@@ -16,13 +16,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private final List<String> mItems;
 
-    public ItemAdapter() {
-        mItems = new ArrayList<>();
-        for (int index = 0; index < 10; index++) {
-            mItems.add("Item" + index);
-        }
-    }
-
     public ItemAdapter(List<String> items) {
         if (items == null) {
             mItems = Collections.emptyList();

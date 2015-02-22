@@ -14,7 +14,7 @@ import com.t28.sectionadapter.sample.adapter.SimpleSectionAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,16 +32,23 @@ public class LinearFragment extends Fragment {
     }
 
     private RecyclerView.Adapter createAdapter() {
-        final Map<String, List<String>> sections = new HashMap<>();
+        final Map<String, List<String>> sections = new LinkedHashMap<>();
+
+        final String header = "LargeSection";
+        final List<String> items = Collections.emptyList();
+        sections.put(header, items);
 
         final String header1 = "Section1";
-        final List<String> items1 = Collections.emptyList();
+        final List<String> items1 = new ArrayList<>();
+        for (int index = 0; index < 9; index++) {
+            items1.add("Item1-" + index);
+        }
         sections.put(header1, items1);
 
-        final String header2 = "Section1-1";
+        final String header2 = "Section2";
         final List<String> items2 = new ArrayList<>();
-        for (int index = 0; index < 9; index++) {
-            items2.add("Items1-1-" + index);
+        for (int index = 0; index < 3; index++) {
+            items2.add("Item2-" + index);
         }
         sections.put(header2, items2);
 
