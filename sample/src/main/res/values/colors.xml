@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="divider">#22000000</color>
+    <color name="divider">#dd8800</color>
+    <color name="main_text">#222222</color>
+    <color name="item_background">#dddddd</color>
 </resources>

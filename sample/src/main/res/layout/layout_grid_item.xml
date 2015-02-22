@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="#ddffffff"
+    android:background="@color/item_background"
     android:foreground="?android:attr/selectableItemBackground"
     >
 
@@ -16,7 +16,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:singleLine="true"
-        android:textColor="#dd000000"
+        android:textColor="@color/main_text"
         android:textSize="14sp"
         tools:text="Item"
         />
