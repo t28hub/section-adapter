@@ -18,8 +18,19 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (isHeaderViewType(viewType)) {
+            return onCreateHaederViewHolder(parent, viewType);
+        }
+
+        for (Section section : mSections) {
+            final RecyclerView.Adapter adapter = section.getAdapter();
+            final RecyclerView.ViewHolder holder = adapter.onCreateViewHolder(parent, viewType);
+            if (holder != null) {
+                return holder;
+            }
+        }
+        throw new IllegalStateException("ViewHolder is not created. View type:" + viewType);
     }
 
     @Override
@@ -99,6 +110,10 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     protected abstract int getHeaderCount();
 
     protected abstract RecyclerView.Adapter<VH2> getItemAdapter(int sectionPosition);
+
+    private boolean isHeaderViewType(int viewType) {
+        return mHeaderViewTypes.contains(viewType);
+    }
 
     private Section findSectionByPositions(int position) {
         for (Section section : mSections) {
