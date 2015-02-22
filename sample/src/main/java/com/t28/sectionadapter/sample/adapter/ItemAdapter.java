@@ -61,12 +61,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return mItems.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView mTextView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mTextView = (TextView) itemView.findViewById(mTextViewResId);
+        }
+
+        @Override
+        public void onClick(View view) {
         }
 
         public void bind(String value) {
