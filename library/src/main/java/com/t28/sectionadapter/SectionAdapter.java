@@ -91,9 +91,9 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
 
     @Override
     public final int getItemCount() {
-        final int headerCount = getHeaderCount();
-        int itemCount = headerCount;
-        for (int position = 0; position < headerCount; position++) {
+        final int sectionrCount = getSectionCount();
+        int itemCount = sectionrCount;
+        for (int position = 0; position < sectionrCount; position++) {
             itemCount += getItemAdapter(position).getItemCount();
         }
         return itemCount;
@@ -104,6 +104,8 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
         notifyDataSetChanged();
     }
 
+    protected abstract int getSectionCount();
+
     protected abstract VH1 onCreateHeaderViewHolder(ViewGroup parent, int viewType);
 
     protected abstract void onBindHeaderViewHolder(VH1 holder, int sectionPosition);
@@ -111,8 +113,6 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
     protected abstract int getHeaderViewType(int sectionPosition);
 
     protected abstract long getHeaderId(int sectionPosition);
-
-    protected abstract int getHeaderCount();
 
     protected abstract RecyclerView.Adapter<VH2> getItemAdapter(int sectionPosition);
 
@@ -135,8 +135,8 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
     private void refreshSections() {
         Section previous = Section.emptySection();
         final List<Section> sections = new ArrayList<>();
-        final int headerCount = getHeaderCount();
-        for (int position = 0; position < headerCount; position++) {
+        final int sectionCount = getSectionCount();
+        for (int position = 0; position < sectionCount; position++) {
             final int headerPosition;
             if (previous.isEmpty()) {
                 headerPosition = 0;
