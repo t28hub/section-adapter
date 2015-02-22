@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.t28.sectionadapter.sample.R;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
     private static final int VIEW_TYPE_ITEM = 2;
@@ -20,6 +20,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         mItems = new ArrayList<>();
         for (int index = 0; index < 10; index++) {
             mItems.add("Item" + index);
+        }
+    }
+
+    public ItemAdapter(List<String> items) {
+        if (items == null) {
+            mItems = Collections.emptyList();
+        } else {
+            mItems = new ArrayList<>(items);
         }
     }
 
