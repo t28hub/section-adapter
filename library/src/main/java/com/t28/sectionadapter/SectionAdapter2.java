@@ -134,15 +134,24 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
 
     private void refreshSections() {
         Section2 previous = Section2.emptySection();
-        for (Section2 section : mSections) {
-            final int position;
+        final List<Section2> sections = new ArrayList<>();
+        final int headerCount = getHeaderCount();
+        for (int position = 0; position < headerCount; position++) {
+            final int headerPosition;
             if (previous.isEmpty()) {
-                position = 0;
+                headerPosition = 0;
             } else {
-                position = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
+                headerPosition = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
             }
-            section.setHeaderPosition(position);
+
+            final Section2 section = new Section2(getItemAdapter(position));
+            section.setHeaderPosition(headerPosition);
+            sections.add(section);
+
             previous = section;
         }
+
+        mSections.clear();
+        mSections.addAll(sections);
     }
 }
