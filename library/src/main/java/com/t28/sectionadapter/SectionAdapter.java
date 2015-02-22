@@ -91,9 +91,9 @@ public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
 
     @Override
     public final int getItemCount() {
-        final int sectionrCount = getSectionCount();
-        int itemCount = sectionrCount;
-        for (int position = 0; position < sectionrCount; position++) {
+        final int sectionCount = getSectionCount();
+        int itemCount = sectionCount;
+        for (int position = 0; position < sectionCount; position++) {
             itemCount += getItemAdapter(position).getItemCount();
         }
         return itemCount;

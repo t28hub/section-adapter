@@ -8,10 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.R;
-import com.t28.sectionadapter.sample.adapter.ItemAdapter;
+import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.adapter.SimpleSectionAdapter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LinearFragment extends Fragment {
     public LinearFragment() {
@@ -27,17 +32,20 @@ public class LinearFragment extends Fragment {
     }
 
     private RecyclerView.Adapter createAdapter() {
-        final SimpleSectionAdapter adapter = new SimpleSectionAdapter();
-        adapter.append("Section1");
-        adapter.append("Section1-1", new ItemAdapter());
-        adapter.append("Section1-2", new ItemAdapter());
-        adapter.append("Section2");
-        adapter.append("Section2-1", new ItemAdapter());
-        adapter.append("Section2-2", new ItemAdapter());
-        adapter.append("Section2-3", new ItemAdapter());
-        adapter.append("Section3");
-        adapter.append("Section3-1", new ItemAdapter());
-        return adapter;
+        final Map<String, List<String>> sections = new HashMap<>();
+
+        final String header1 = "Section1";
+        final List<String> items1 = Collections.emptyList();
+        sections.put(header1, items1);
+
+        final String header2 = "Section1-1";
+        final List<String> items2 = new ArrayList<>();
+        for (int index = 0; index < 9; index++) {
+            items2.add("Items1-1-" + index);
+        }
+        sections.put(header2, items2);
+
+        return new SimpleSectionAdapter(sections);
     }
 
     public static class Creator implements FragmentAdapter.FragmentCreator {
