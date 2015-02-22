@@ -2,6 +2,7 @@ package com.t28.sectionadapter.sample.fragment;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.t28.sectionadapter.sample.DividerItemDecoration;
 import com.t28.sectionadapter.sample.R;
 import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.adapter.SimpleSectionAdapter;
@@ -39,8 +41,14 @@ public class GridFragment extends Fragment {
         final RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_grid, container, false);
         view.setHasFixedSize(true);
         view.setAdapter(mSectionAdapter);
+        view.addItemDecoration(createItemDecoration());
         view.setLayoutManager(createLayoutManager());
         return view;
+    }
+
+    private RecyclerView.ItemDecoration createItemDecoration() {
+        final Drawable divider = getResources().getDrawable(R.drawable.shape_divider);
+        return new DividerItemDecoration(divider);
     }
 
     private RecyclerView.LayoutManager createLayoutManager() {
