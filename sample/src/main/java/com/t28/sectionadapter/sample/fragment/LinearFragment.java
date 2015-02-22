@@ -1,5 +1,6 @@
 package com.t28.sectionadapter.sample.fragment;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,7 @@ import com.t28.sectionadapter.sample.R;
 import com.t28.sectionadapter.sample.adapter.FragmentAdapter;
 import com.t28.sectionadapter.sample.adapter.SimpleSectionAdapter;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,25 +32,33 @@ public class LinearFragment extends Fragment {
     }
 
     private RecyclerView.Adapter createAdapter() {
+        final Resources resources = getResources();
         final Map<String, List<String>> sections = new LinkedHashMap<>();
 
-        final String header = "LargeSection";
-        final List<String> items = Collections.emptyList();
-        sections.put(header, items);
+        // Android 1.x
+        final String android1 = resources.getString(R.string.android_1);
+        final List<String> android1Names = Arrays.asList(resources.getStringArray(R.array.android_1_names));
+        sections.put(android1, android1Names);
 
-        final String header1 = "Section1";
-        final List<String> items1 = new ArrayList<>();
-        for (int index = 0; index < 9; index++) {
-            items1.add("Item1-" + index);
-        }
-        sections.put(header1, items1);
+        // Android 2.x
+        final String android2 = resources.getString(R.string.android_2);
+        final List<String> android2Names = Arrays.asList(resources.getStringArray(R.array.android_2_names));
+        sections.put(android2, android2Names);
 
-        final String header2 = "Section2";
-        final List<String> items2 = new ArrayList<>();
-        for (int index = 0; index < 3; index++) {
-            items2.add("Item2-" + index);
-        }
-        sections.put(header2, items2);
+        // Android 3.x
+        final String android3 = resources.getString(R.string.android_3);
+        final List<String> android3Names = Arrays.asList(resources.getStringArray(R.array.android_3_names));
+        sections.put(android3, android3Names);
+
+        // Android 4.x
+        final String android4 = resources.getString(R.string.android_4);
+        final List<String> android4Names = Arrays.asList(resources.getStringArray(R.array.android_4_names));
+        sections.put(android4, android4Names);
+
+        // Android 5.x
+        final String android5 = resources.getString(R.string.android_5);
+        final List<String> android5Names = Arrays.asList(resources.getStringArray(R.array.android_5_names));
+        sections.put(android5, android5Names);
 
         return new SimpleSectionAdapter(sections);
     }

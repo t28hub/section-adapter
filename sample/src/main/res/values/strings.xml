@@ -6,13 +6,13 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="android1.x">Android 1.x</string>
-    <string name="android2.x">Android 2.x</string>
-    <string name="android3.x">Android 3.x</string>
-    <string name="android4.x">Android 4.x</string>
-    <string name="android5.x">Android 5.x</string>
+    <string name="android_1">Android 1.x</string>
+    <string name="android_2">Android 2.x</string>
+    <string name="android_3">Android 3.x</string>
+    <string name="android_4">Android 4.x</string>
+    <string name="android_5">Android 5.x</string>
 
-    <string-array name="android1.x_names">
+    <string-array name="android_1_names">
         <item>BETA</item>
         <item>BETA_1_1</item>
         <item>CUPCAKE</item>
@@ -20,7 +20,7 @@
         <item>DONUT</item>
     </string-array>
 
-    <string-array name="android2.x_names">
+    <string-array name="android_2_names">
         <item>ECLAIR</item>
         <item>ECLAIR_0_1</item>
         <item>ECLAIR_MR1</item>
@@ -29,13 +29,13 @@
         <item>GINGERBREAD_MR1</item>
     </string-array>
 
-    <string-array name="android3.x_names">
+    <string-array name="android_3_names">
         <item>HONEYCOMB</item>
         <item>HONEYCOMB_MR1</item>
         <item>HONEYCOMB_MR2</item>
     </string-array>
 
-    <string-array name="android4.x_names">
+    <string-array name="android_4_names">
         <item>ICE_CREAM_SANDWICH</item>
         <item>ICE_CREAM_SANDWICH_MR1</item>
         <item>JELLY_BEAN</item>
@@ -45,7 +45,7 @@
         <item>KITKAT_WATCH</item>
     </string-array>
 
-    <string-array name="android5.x_names">
+    <string-array name="android_5_names">
         <item>LOLLIPOP</item>
     </string-array>
 
