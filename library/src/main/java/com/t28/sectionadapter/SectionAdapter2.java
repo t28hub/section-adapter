@@ -98,7 +98,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
         return itemCount;
     }
 
-    public void refreshSections() {
+    public void requestUpdateSections() {
         Section previous = Section.emptySection();
         for (Section section : mSections) {
             final int position;
