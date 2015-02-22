@@ -2,20 +2,20 @@ package com.t28.sectionadapter;
 
 import android.support.v7.widget.RecyclerView;
 
-class Section2 {
-    private static final Section2 EMPTY = new Section2();
+class Section {
+    private static final Section EMPTY = new Section();
 
     private final RecyclerView.Adapter mAdapter;
     private int mHeaderPosition = RecyclerView.NO_POSITION;
 
-    Section2(RecyclerView.Adapter adapter) {
+    Section(RecyclerView.Adapter adapter) {
         if (adapter == null) {
             throw new NullPointerException("adapter == null");
         }
         mAdapter = adapter;
     }
 
-    private Section2() {
+    private Section() {
         mAdapter = new NullAdapter();
     }
 
@@ -49,7 +49,7 @@ class Section2 {
         return position - mHeaderPosition - 1;
     }
 
-    static Section2 emptySection() {
+    static Section emptySection() {
         return EMPTY;
     }
 }

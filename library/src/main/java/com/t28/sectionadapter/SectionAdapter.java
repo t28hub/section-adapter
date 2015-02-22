@@ -8,12 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
+public abstract class SectionAdapter<VH1 extends RecyclerView.ViewHolder,
         VH2 extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final List<Section2> mSections;
+    private final List<Section> mSections;
     private final Set<Integer> mHeaderViewTypes;
 
-    public SectionAdapter2() {
+    public SectionAdapter() {
         mSections = new ArrayList<>();
         mHeaderViewTypes = new HashSet<>();
     }
@@ -24,7 +24,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
             return onCreateHeaderViewHolder(parent, viewType);
         }
 
-        for (Section2 section : mSections) {
+        for (Section section : mSections) {
             final RecyclerView.Adapter adapter = section.getAdapter();
             final RecyclerView.ViewHolder holder = adapter.onCreateViewHolder(parent, viewType);
             if (holder != null) {
@@ -37,7 +37,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
     @SuppressWarnings("unchecked")
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Section2 section = findSectionByPosition(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -55,7 +55,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
 
     @Override
     public final int getItemViewType(int position) {
-        final Section2 section = findSectionByPosition(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -74,7 +74,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
 
     @Override
     public final long getItemId(int position) {
-        final Section2 section = findSectionByPosition(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -120,8 +120,8 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
         return mHeaderViewTypes.contains(viewType);
     }
 
-    private Section2 findSectionByPosition(int position) {
-        for (Section2 section : mSections) {
+    private Section findSectionByPosition(int position) {
+        for (Section section : mSections) {
             if (section.isHeaderPosition(position)) {
                 return section;
             }
@@ -129,12 +129,12 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
                 return section;
             }
         }
-        return Section2.emptySection();
+        return Section.emptySection();
     }
 
     private void refreshSections() {
-        Section2 previous = Section2.emptySection();
-        final List<Section2> sections = new ArrayList<>();
+        Section previous = Section.emptySection();
+        final List<Section> sections = new ArrayList<>();
         final int headerCount = getHeaderCount();
         for (int position = 0; position < headerCount; position++) {
             final int headerPosition;
@@ -144,7 +144,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder,
                 headerPosition = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
             }
 
-            final Section2 section = new Section2(getItemAdapter(position));
+            final Section section = new Section(getItemAdapter(position));
             section.setHeaderPosition(headerPosition);
             sections.add(section);
 
