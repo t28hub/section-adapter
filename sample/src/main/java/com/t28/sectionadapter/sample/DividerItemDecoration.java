@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.t28.sectionadapter.sample.adapter.SimpleSectionAdapter;
+
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private final Drawable mDivider;
 
@@ -31,6 +33,13 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        final SimpleSectionAdapter adapter = (SimpleSectionAdapter) parent.getAdapter();
+        final int position = parent.getChildPosition(view);
+        if (adapter.isHeaderPosition(position)) {
+            outRect.set(0, 0, 0, 0);
+            return;
+        }
+
         outRect.set(0, 0, mDivider.getIntrinsicWidth(), mDivider.getIntrinsicHeight());
     }
 
