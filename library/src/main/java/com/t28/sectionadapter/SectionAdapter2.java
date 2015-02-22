@@ -20,7 +20,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     @Override
     public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (isHeaderViewType(viewType)) {
-            return onCreateHaederViewHolder(parent, viewType);
+            return onCreateHeaderViewHolder(parent, viewType);
         }
 
         for (Section section : mSections) {
@@ -113,7 +113,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
         notifyDataSetChanged();
     }
 
-    protected abstract VH1 onCreateHaederViewHolder(ViewGroup parent, int viewType);
+    protected abstract VH1 onCreateHeaderViewHolder(ViewGroup parent, int viewType);
 
     protected abstract void onBindHeaderViewHolder(VH1 holder, int sectionPosition);
 
