@@ -98,18 +98,8 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
         return itemCount;
     }
 
-    public void requestUpdateSections() {
-        Section previous = Section.emptySection();
-        for (Section section : mSections) {
-            final int position;
-            if (previous.isEmpty()) {
-                position = 0;
-            } else {
-                position = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
-            }
-            section.setHeaderPosition(position);
-            previous = section;
-        }
+    public void notifySectionChanged() {
+        refreshSections();
         notifyDataSetChanged();
     }
 
@@ -139,5 +129,19 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
             }
         }
         return Section.emptySection();
+    }
+
+    private void refreshSections() {
+        Section previous = Section.emptySection();
+        for (Section section : mSections) {
+            final int position;
+            if (previous.isEmpty()) {
+                position = 0;
+            } else {
+                position = previous.getHeaderPosition() + previous.getAdapter().getItemCount() + 1;
+            }
+            section.setHeaderPosition(position);
+            previous = section;
+        }
     }
 }
