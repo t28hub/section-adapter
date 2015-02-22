@@ -36,7 +36,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     @SuppressWarnings("unchecked")
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Section section = findSectionByPositions(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -54,7 +54,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
 
     @Override
     public final int getItemViewType(int position) {
-        final Section section = findSectionByPositions(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -73,7 +73,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
 
     @Override
     public final long getItemId(int position) {
-        final Section section = findSectionByPositions(position);
+        final Section section = findSectionByPosition(position);
         if (section.isEmpty()) {
             throw new IllegalArgumentException("Section is not found:" + position);
         }
@@ -129,7 +129,7 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
         return mHeaderViewTypes.contains(viewType);
     }
 
-    private Section findSectionByPositions(int position) {
+    private Section findSectionByPosition(int position) {
         for (Section section : mSections) {
             if (section.isHeaderPosition(position)) {
                 return section;
