@@ -4,13 +4,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<Section<String>> mSections;
+    private final Set<Integer> mHeaderViewTypes;
 
     public SectionAdapter2() {
         mSections = new ArrayList<>();
+        mHeaderViewTypes = new HashSet<>();
     }
 
     @Override
@@ -21,6 +25,25 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+    }
+
+    @Override
+    public final int getItemViewType(int position) {
+        final Section section = findSectionByPositions(position);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("Section is not found:" + position);
+        }
+
+        if (section.isHeaderPosition(position)) {
+            final int sectionPosition = mSections.indexOf(section);
+            final int headerViewType = getHeaderViewType(sectionPosition);
+            mHeaderViewTypes.add(headerViewType);
+            return headerViewType;
+        }
+
+        final int itemPosition = section.toItemPosition(position);
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        return adapter.getItemViewType(itemPosition);
     }
 
     @Override
@@ -59,4 +82,16 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     protected abstract int getHeaderCount();
 
     protected abstract RecyclerView.Adapter<VH2> getItemAdapter(int sectionPosition);
+
+    private Section findSectionByPositions(int position) {
+        for (Section section : mSections) {
+            if (section.isHeaderPosition(position)) {
+                return section;
+            }
+            if (section.containsItem(position)) {
+                return section;
+            }
+        }
+        return Section.emptySection();
+    }
 }
