@@ -1,22 +1,33 @@
 package com.t28.sectionadapter.sample.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.t28.sectionadapter.sample.R;
-
 import java.util.ArrayList;
-import java.util.Collections;import java.util.List;
+import java.util.Collections;
+import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
     private static final int VIEW_TYPE_ITEM = 2;
 
     private final List<String> mItems;
+    private final LayoutInflater mInflater;
+    private final int mLayoutResId;
+    private final int mTextViewResId;
 
-    public ItemAdapter(List<String> items) {
+    public ItemAdapter(Context context, int layoutResId, int textViewResId, List<String> items) {
+        if (context == null) {
+            throw new NullPointerException("context == null");
+        }
+
+        mInflater = LayoutInflater.from(context);
+        mLayoutResId = layoutResId;
+        mTextViewResId = textViewResId;
+
         if (items == null) {
             mItems = Collections.emptyList();
         } else {
@@ -26,8 +37,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View itemView = inflater.inflate(R.layout.layout_linear_item, parent, false);
+        final View itemView = mInflater.inflate(mLayoutResId, parent, false);
         return new ItemViewHolder(itemView);
     }
 
@@ -53,13 +63,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
+        private final TextView mTextView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+            mTextView = (TextView) itemView.findViewById(mTextViewResId);
         }
 
         public void bind(String value) {
-            ((TextView) itemView).setText(value);
+            mTextView.setText(value);
         }
     }
 }
