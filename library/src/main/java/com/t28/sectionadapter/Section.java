@@ -2,7 +2,7 @@ package com.t28.sectionadapter;
 
 import android.support.v7.widget.RecyclerView;
 
-class Section {
+public class Section {
     private static final Section EMPTY = new Section();
 
     private final RecyclerView.Adapter mAdapter;
@@ -19,22 +19,26 @@ class Section {
         mAdapter = new NullAdapter();
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return mAdapter instanceof NullAdapter;
+    }
+
+    public boolean isHeaderPosition(int position) {
+        return mHeaderPosition == position;
+    }
+
+    public boolean containsItem(int position) {
+        final int positionStart = mHeaderPosition + 1;
+        final int positionEnd = mHeaderPosition + mAdapter.getItemCount();
+        return positionStart <= position && position <= positionEnd;
+    }
+
+    public int toItemPosition(int position) {
+        return position - mHeaderPosition - 1;
     }
 
     RecyclerView.Adapter getAdapter() {
         return mAdapter;
-    }
-
-    boolean isHeaderPosition(int position) {
-        return mHeaderPosition == position;
-    }
-
-    boolean containsItem(int position) {
-        final int positionStart = mHeaderPosition + 1;
-        final int positionEnd = mHeaderPosition + mAdapter.getItemCount();
-        return positionStart <= position && position <= positionEnd;
     }
 
     void setHeaderPosition(int position) {
@@ -43,10 +47,6 @@ class Section {
 
     int getHeaderPosition() {
         return mHeaderPosition;
-    }
-
-    int toItemPosition(int position) {
-        return position - mHeaderPosition - 1;
     }
 
     static Section emptySection() {
