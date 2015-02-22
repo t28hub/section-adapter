@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.t28.sectionadapter.Section;import com.t28.sectionadapter.SectionAdapter;
+import com.t28.sectionadapter.Section;
+import com.t28.sectionadapter.SectionAdapter;
 import com.t28.sectionadapter.sample.R;
 
 import java.util.ArrayList;
@@ -18,10 +19,22 @@ public class SimpleSectionAdapter extends
         SectionAdapter<SimpleSectionAdapter.HeaderViewHolder, ItemAdapter.ItemViewHolder> {
     private static final int VIEW_TYPE_HEADER = 1;
 
+    private final LayoutInflater mInflater;
+    private final int mLayoutResId;
+    private final int mTextViewResId;
     private final List<Pair<String, ItemAdapter>> mSections;
 
-    public SimpleSectionAdapter(Map<String, List<String>> dataSet) {
+    public SimpleSectionAdapter(LayoutInflater inflater, int layoutResId,
+                                int textViewResId, Map<String, List<String>> dataSet) {
+        if (inflater == null) {
+            throw new NullPointerException("inflater == null");
+        }
+
+        mInflater = inflater;
+        mLayoutResId = layoutResId;
+        mTextViewResId = textViewResId;
         mSections = new ArrayList<>();
+
         if (dataSet != null) {
             setup(dataSet);
         }
@@ -69,7 +82,9 @@ public class SimpleSectionAdapter extends
     private void setup(Map<String, List<String>> sections) {
         for (Map.Entry<String, List<String>> entry : sections.entrySet()) {
             final String header = entry.getKey();
-            final ItemAdapter adapter = new ItemAdapter(entry.getValue());
+            final ItemAdapter adapter = new ItemAdapter(
+                    mInflater, mLayoutResId, mTextViewResId, entry.getValue()
+            );
 
             final Pair<String, ItemAdapter> section = new Pair<>(header, adapter);
             mSections.add(section);

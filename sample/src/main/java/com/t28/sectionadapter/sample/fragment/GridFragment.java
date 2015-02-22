@@ -60,7 +60,12 @@ public class GridFragment extends Fragment {
     private SimpleSectionAdapter createAdapter() {
         final Resources resources = getResources();
         final Map<String, List<String>> sections = DummyDataSet.versionNames(resources);
-        return new SimpleSectionAdapter(sections);
+        return new SimpleSectionAdapter(
+                LayoutInflater.from(getActivity()),
+                R.layout.layout_linear_item,
+                R.id.linear_item_text,
+                sections
+        );
     }
 
     public static class Creator implements FragmentAdapter.FragmentCreator {

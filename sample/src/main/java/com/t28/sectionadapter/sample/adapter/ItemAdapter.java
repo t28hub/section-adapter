@@ -1,6 +1,5 @@
 package com.t28.sectionadapter.sample.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +18,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private final int mLayoutResId;
     private final int mTextViewResId;
 
-    public ItemAdapter(Context context, int layoutResId, int textViewResId, List<String> items) {
-        if (context == null) {
-            throw new NullPointerException("context == null");
+    public ItemAdapter(LayoutInflater inflater, int layoutResId, int textViewResId, List<String> items) {
+        if (inflater == null) {
+            throw new NullPointerException("inflater == null");
         }
 
-        mInflater = LayoutInflater.from(context);
+        mInflater = inflater;
         mLayoutResId = layoutResId;
         mTextViewResId = textViewResId;
 
