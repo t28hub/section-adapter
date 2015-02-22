@@ -33,9 +33,23 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
         throw new IllegalStateException("ViewHolder is not created. View type:" + viewType);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        final Section section = findSectionByPositions(position);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("Section is not found:" + position);
+        }
 
+        if (section.isHeaderPosition(position)) {
+            final int sectionPosition = mSections.indexOf(section);
+            onBindHeaderViewHolder((VH1) holder, sectionPosition);
+            return;
+        }
+
+        final int itemPosition = section.toItemPosition(position);
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        adapter.onBindViewHolder(holder, itemPosition);
     }
 
     @Override
