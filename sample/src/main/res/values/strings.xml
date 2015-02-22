@@ -5,4 +5,48 @@
     <string name="action_settings">Settings</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="android1.x">Android 1.x</string>
+    <string name="android2.x">Android 2.x</string>
+    <string name="android3.x">Android 3.x</string>
+    <string name="android4.x">Android 4.x</string>
+    <string name="android5.x">Android 5.x</string>
+
+    <string-array name="android1.x_names">
+        <item>BETA</item>
+        <item>BETA_1_1</item>
+        <item>CUPCAKE</item>
+        <item>CUR_DEVELOPMENT</item>
+        <item>DONUT</item>
+    </string-array>
+
+    <string-array name="android2.x_names">
+        <item>ECLAIR</item>
+        <item>ECLAIR_0_1</item>
+        <item>ECLAIR_MR1</item>
+        <item>FROYO</item>
+        <item>GINGERBREAD</item>
+        <item>GINGERBREAD_MR1</item>
+    </string-array>
+
+    <string-array name="android3.x_names">
+        <item>HONEYCOMB</item>
+        <item>HONEYCOMB_MR1</item>
+        <item>HONEYCOMB_MR2</item>
+    </string-array>
+
+    <string-array name="android4.x_names">
+        <item>ICE_CREAM_SANDWICH</item>
+        <item>ICE_CREAM_SANDWICH_MR1</item>
+        <item>JELLY_BEAN</item>
+        <item>JELLY_BEAN_MR1</item>
+        <item>JELLY_BEAN_MR2</item>
+        <item>KITKAT</item>
+        <item>KITKAT_WATCH</item>
+    </string-array>
+
+    <string-array name="android5.x_names">
+        <item>LOLLIPOP</item>
+    </string-array>
+
 </resources>
