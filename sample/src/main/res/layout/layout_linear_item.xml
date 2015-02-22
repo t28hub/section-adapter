@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:layout_gravity="center_vertical"
+    android:background="#ddffffff"
     android:foreground="?android:attr/selectableItemBackground"
     >
 
     <TextView
         android:id="@+id/linear_item_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ddffffff"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
