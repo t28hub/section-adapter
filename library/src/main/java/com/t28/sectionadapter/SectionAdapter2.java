@@ -47,6 +47,23 @@ public abstract class SectionAdapter2<VH1 extends RecyclerView.ViewHolder, VH2 e
     }
 
     @Override
+    public final long getItemId(int position) {
+        final Section section = findSectionByPositions(position);
+        if (section.isEmpty()) {
+            throw new IllegalArgumentException("Section is not found:" + position);
+        }
+
+        if (section.isHeaderPosition(position)) {
+            final int sectionPosition = mSections.indexOf(section);
+            return getHeaderId(sectionPosition);
+        }
+
+        final int itemPosition = section.toItemPosition(position);
+        final RecyclerView.Adapter adapter = section.getAdapter();
+        return adapter.getItemId(itemPosition);
+    }
+
+    @Override
     public final int getItemCount() {
         final int headerCount = getHeaderCount();
         int itemCount = headerCount;
