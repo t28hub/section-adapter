@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 public class GridFragment extends Fragment {
+    private static final int SPAN_COUNT = 3;
+    private static final int SPAN_SIZE_ITEM = 1;
+    private static final int SPAN_SIZE_HEADER = 3;
+
     public GridFragment() {
     }
 
@@ -25,9 +29,20 @@ public class GridFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_grid, container, false);
         view.setHasFixedSize(true);
-        view.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        view.setLayoutManager(createLayoutManager());
         view.setAdapter(createAdapter());
         return view;
+    }
+
+    private RecyclerView.LayoutManager createLayoutManager() {
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return SPAN_SIZE_ITEM;
+            }
+        });
+        return layoutManager;
     }
 
     private RecyclerView.Adapter createAdapter() {
