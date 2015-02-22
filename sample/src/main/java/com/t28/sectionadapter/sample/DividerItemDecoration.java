@@ -24,7 +24,9 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         if (mDivider.getIntrinsicWidth() > 0) {
             drawVertical(canvas, parent);
         }
-        drawHorizontal(canvas, parent);
+        if (mDivider.getIntrinsicHeight() > 0) {
+            drawHorizontal(canvas, parent);
+        }
     }
 
     @Override
@@ -58,5 +60,27 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     private void drawHorizontal(Canvas canvas, RecyclerView parent) {
+        final int dividerHeight = mDivider.getIntrinsicHeight();
+        final int dividerWidth = mDivider.getIntrinsicWidth();
+        final int parentBottom = parent.getHeight() + parent.getPaddingBottom();
+        final int childCount = parent.getChildCount();
+        for (int index = 0; index < childCount; index++) {
+            final View child = parent.getChildAt(index);
+            if (child.getWidth() == 0 || child.getHeight() == 0) {
+                continue;
+            }
+
+            final RecyclerView.LayoutParams layout = (RecyclerView.LayoutParams) child.getLayoutParams();
+            final int left = child.getLeft() + layout.leftMargin;
+            final int top = child.getBottom() + layout.bottomMargin;
+            final int right = left + child.getWidth() + dividerWidth;
+            final int bottom = top + dividerHeight;
+            if (bottom >= parentBottom) {
+                continue;
+            }
+
+            mDivider.setBounds(left, top, right, bottom);
+            mDivider.draw(canvas);
+        }
     }
 }
