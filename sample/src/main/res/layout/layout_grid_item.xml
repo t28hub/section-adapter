@@ -15,9 +15,9 @@
         android:gravity="center"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:singleLine="true"
         android:textColor="#dd000000"
         android:textSize="14sp"
-        android:singleLine="true"
         tools:text="Item"
         />
 
