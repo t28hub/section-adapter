@@ -1,5 +1,6 @@
 package com.t28.sectionadapter.sample.fragment;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,15 +23,23 @@ public class GridFragment extends Fragment {
     private static final int SPAN_SIZE_ITEM = 1;
     private static final int SPAN_SIZE_HEADER = 3;
 
+    private SimpleSectionAdapter mSectionAdapter;
+
     public GridFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mSectionAdapter = createAdapter();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_grid, container, false);
         view.setHasFixedSize(true);
+        view.setAdapter(mSectionAdapter);
         view.setLayoutManager(createLayoutManager());
-        view.setAdapter(createAdapter());
         return view;
     }
 
@@ -39,13 +48,16 @@ public class GridFragment extends Fragment {
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
+                if (mSectionAdapter.isHeaderPosition(position)) {
+                    return SPAN_SIZE_HEADER;
+                }
                 return SPAN_SIZE_ITEM;
             }
         });
         return layoutManager;
     }
 
-    private RecyclerView.Adapter createAdapter() {
+    private SimpleSectionAdapter createAdapter() {
         final Resources resources = getResources();
         final Map<String, List<String>> sections = DummyDataSet.versionNames(resources);
         return new SimpleSectionAdapter(sections);
