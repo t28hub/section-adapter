@@ -58,13 +58,11 @@ public class GridFragment extends Fragment {
     }
 
     private SimpleSectionAdapter createAdapter() {
+        final LayoutInflater inflater = LayoutInflater.from(getActivity());
         final Resources resources = getResources();
         final Map<String, List<String>> sections = DummyDataSet.versionNames(resources);
         return new SimpleSectionAdapter(
-                LayoutInflater.from(getActivity()),
-                R.layout.layout_linear_item,
-                R.id.linear_item_text,
-                sections
+                inflater, R.layout.layout_grid_item, R.id.grid_item_text, sections
         );
     }
 
